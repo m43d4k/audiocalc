@@ -1,5 +1,7 @@
 # AudioCalc
 
+[日本語](README-ja.md)
+
 A collection of audio calculation tools for music production, mixing, and mastering.  
 A static web app that runs entirely in the browser — no login required, no tracking.
 
