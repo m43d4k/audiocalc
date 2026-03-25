@@ -78,7 +78,6 @@ interface UiT {
 
 interface Translations {
   home: {
-    eyebrow: string;
     tagline: string;
   };
   tools: Record<ToolId, ToolT>;
@@ -87,54 +86,53 @@ interface Translations {
 
 const en: Translations = {
   home: {
-    eyebrow: "Audio Calculators",
-    tagline: "Music production tools for the browser.\nNo login. No tracking.",
+    tagline: "Audio calculation tools for music production.",
   },
   tools: {
     "note-frequency": {
       title: "Note ↔ Frequency",
       description:
-        "Note name, MIDI number, and Hz in one table. Filter by pitch class, or toggle the ±½ octave columns.",
+        "See note names, MIDI note numbers, and frequencies in Hz in one table. Filter by pitch class or toggle the ±½-octave columns.",
     },
     transpose: {
       title: "Transpose",
       description:
-        "Pick two notes and see the semitone distance and interval name — both up and down.",
+        "Pick two notes and see the semitone distance and interval name, both ascending and descending.",
     },
     "phase-delay": {
       title: "Phase → Delay",
       description:
-        "Enter a phase shift in degrees, get the equivalent time delay in milliseconds and samples.",
+        "Enter a phase difference in degrees to get the equivalent delay in milliseconds and samples.",
     },
     "delay-reverb": {
       title: "Delay & Reverb",
       description:
-        "Set your BPM and get pre-delay, decay, and total time for Hall, Room, and Tight reverb sizes.",
+        "Enter a BPM to calculate pre-delay, decay, and total time for Hall, Room, and Tight reverb settings.",
     },
     "note-length-time": {
-      title: "Note Length ↔ Time",
+      title: "Note Value ↔ Time",
       description:
-        "Enter a BPM to see the duration of every note value — whole to 64th, regular, dotted, and triplet.",
+        "Enter a BPM to see note durations in milliseconds from whole notes to 64th notes, including straight, dotted, and triplet values.",
     },
     "samples-ms": {
       title: "ms ↔ Samples",
       description:
-        "Convert between sample count and milliseconds for any sample rate.",
+        "Convert between milliseconds and sample count at 44.1 / 48 / 88.2 / 96 / 192 kHz.",
     },
     "comb-filter": {
       title: "Comb Filter",
       description:
-        "Enter a delay time to see where comb filter notches fall — same or inverted polarity.",
+        "Enter a delay time to see the comb-filter notch frequencies for in-phase and out-of-phase signals.",
     },
     "harmonic-series": {
       title: "Harmonic Series",
       description:
-        "Enter a fundamental frequency to see its harmonic series — overtone frequencies, nearest notes, and cents deviation.",
+        "Enter a fundamental frequency to see its harmonic series: harmonic frequencies, nearest notes, and deviation in cents.",
     },
     "q-bandwidth": {
       title: "Q ↔ Bandwidth",
       description:
-        "Convert between EQ filter Q and bandwidth in octaves or Hz. Enter any value and the others update instantly.",
+        "Convert between EQ Q and bandwidth in octaves or Hz.",
     },
   },
   ui: {
@@ -193,40 +191,38 @@ const en: Translations = {
 
 const ja: Translations = {
   home: {
-    eyebrow: "Audio Calculators",
-    tagline:
-      "ブラウザで使える音楽制作ツール。\nログイン不要。トラッキングなし。",
+    tagline: "音楽制作のためのオーディオ計算ツール集。",
   },
   tools: {
     "note-frequency": {
       title: "ノート ↔ 周波数",
       description:
-        "音名・MIDIノート番号・Hzを1つの表で確認。ピッチクラスでフィルタ、±½オクターブ列の表示切替にも対応。",
+        "音名・MIDIノート番号・周波数を1つの表で確認。ピッチクラスで絞り込み、±½オクターブ列の表示切替にも対応。",
     },
     transpose: {
       title: "トランスポーズ",
       description:
-        "2つの音を選ぶだけで、半音数と音程名（上行・下行の両方）を表示。",
+        "2つの音を選ぶだけで、半音数と音程名を上行・下行の両方で表示。",
     },
     "phase-delay": {
       title: "フェーズ → ディレイ",
       description:
-        "位相差（度数）を入力すると、対応するディレイ時間をミリ秒とサンプル数で変換。",
+        "位相差（度）を入力すると、対応するディレイ時間をミリ秒とサンプル数に換算。",
     },
     "delay-reverb": {
       title: "ディレイ & リバーブ",
       description:
-        "BPMを設定するだけで、ホール・ルーム・タイトの各リバーブサイズに合わせたプリディレイ・ディケイ・トータルタイムを計算。",
+        "BPMを入力すると、ホール・ルーム・タイトの各設定に対するプリディレイ・ディケイ・トータル時間を計算。",
     },
     "note-length-time": {
       title: "音価 ↔ 時間",
       description:
-        "BPMを入力すると、全音符から64分音符まで、付点・三連符を含む各音符の長さをミリ秒で一覧表示。",
+        "BPMを入力すると、全音符から64分音符まで、通常・付点・三連符を含む各音価の長さをミリ秒で一覧表示。",
     },
     "samples-ms": {
       title: "ms ↔ サンプル数",
       description:
-        "サンプル数とミリ秒を相互変換。サンプルレートを選択して入力するだけ。",
+        "サンプル数とミリ秒を相互変換。44.1 / 48 / 88.2 / 96 / 192 kHz に対応。",
     },
     "comb-filter": {
       title: "コムフィルター",
@@ -236,12 +232,12 @@ const ja: Translations = {
     "harmonic-series": {
       title: "倍音列",
       description:
-        "基音の周波数を入力すると、各倍音の周波数・最近音・セント偏差を一覧表示。",
+        "基音周波数を入力すると、各倍音の周波数・最近音・セント偏差を一覧表示。",
     },
     "q-bandwidth": {
       title: "Q ↔ 帯域幅",
       description:
-        "EQフィルターのQ値とオクターブ幅・Hz幅を相互変換。どの値を入力しても他が即座に更新。",
+        "EQのQ値とオクターブ幅・Hz幅を相互変換。",
     },
   },
   ui: {

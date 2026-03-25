@@ -9,7 +9,6 @@ export function Home() {
   return (
     <main className="home">
       <section className="home__hero">
-        <p className="home__eyebrow">{t.home.eyebrow}</p>
         <h1 className="home__title">AudioCalc</h1>
         <p className="home__tagline">
           {t.home.tagline.split("\n").map((line, i) => (
