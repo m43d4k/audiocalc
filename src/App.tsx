@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { HashRouter, Routes, Route } from "react-router-dom";
 import { LangProvider } from "./i18n";
 import { AppHeader } from "./components/AppHeader";
 import { Home } from "./pages/Home";
@@ -15,7 +15,7 @@ import { QBandwidth } from "./pages/QBandwidth";
 export function App() {
   return (
     <LangProvider>
-      <BrowserRouter>
+      <HashRouter>
         <AppHeader />
         <Routes>
           <Route path="/" element={<Home />} />
@@ -29,7 +29,7 @@ export function App() {
           <Route path="/harmonic-series" element={<HarmonicSeries />} />
           <Route path="/q-bandwidth" element={<QBandwidth />} />
         </Routes>
-      </BrowserRouter>
+      </HashRouter>
     </LangProvider>
   );
 }
