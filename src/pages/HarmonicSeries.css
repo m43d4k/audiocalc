@@ -167,6 +167,10 @@
     border-bottom: 1px solid var(--color-border);
 }
 
+.hs-th--cents {
+    text-align: right;
+}
+
 .hs-th--n     { width: 3rem; }
 .hs-th--note  { width: 6rem; }
 .hs-th--cents { width: 6rem; }
@@ -199,6 +203,7 @@
 
 .hs-td--cents {
     font-weight: var(--weight-medium);
+    text-align: right;
 }
 
 .hs-td--cents[data-tune="good"] {

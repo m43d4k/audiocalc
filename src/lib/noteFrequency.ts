@@ -8,7 +8,7 @@ export const REF_DEFAULT = 440;
 
 /** MIDI ノート番号 n から音名を生成（C-2 = 0 規約） */
 export function noteNameFromMidi(n: number): string {
-  const pc = PITCH_NAMES[n % 12];
+  const pc = PITCH_NAMES[((n % 12) + 12) % 12];
   const octave = Math.floor(n / 12) - 2;
   return `${pc}${octave}`;
 }
