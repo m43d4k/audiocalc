@@ -1,0 +1,261 @@
+/* ── Card ──────────────────────────────────────────── */
+
+.qb-card {
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    max-width: 480px;
+}
+
+/* ── Center frequency row ───────────────────────────── */
+
+/* ── Top row (center freq + dB selector) ────────────── */
+
+.qb-top-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-6);
+    flex-wrap: wrap;
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-6);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.qb-center-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+}
+
+.qb-dbref-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-3);
+    margin-left: auto;
+}
+
+.qb-dbref-toggle {
+    display: flex;
+    gap: var(--space-1);
+    background: var(--color-bg-raised);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 2px;
+}
+
+.qb-dbref-btn {
+    background: transparent;
+    border: none;
+    border-radius: calc(var(--radius-md) - 2px);
+    padding: var(--space-1) var(--space-2);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-medium);
+    color: var(--color-subtle);
+    cursor: pointer;
+    transition:
+        background var(--duration-fast),
+        color var(--duration-fast);
+}
+
+.qb-dbref-btn--active {
+    background: var(--tool-accent);
+    color: #000;
+}
+
+.qb-label {
+    font-size: var(--text-sm);
+    color: var(--color-subtle);
+    white-space: nowrap;
+}
+
+.qb-f0-wrap {
+    position: relative;
+    flex: 1;
+}
+
+.qb-f0-input {
+    appearance: none;
+    background: var(--color-bg-raised);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-2) var(--space-8) var(--space-2) var(--space-3);
+    color: var(--color-text);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    width: 100%;
+    transition: border-color var(--duration-fast);
+    -moz-appearance: textfield;
+}
+
+.qb-f0-input::-webkit-inner-spin-button,
+.qb-f0-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+.qb-f0-input:focus {
+    outline: none;
+    border-color: var(--tool-accent);
+}
+
+.qb-f0-unit {
+    position: absolute;
+    right: var(--space-3);
+    top: 50%;
+    transform: translateY(-50%);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-muted);
+    pointer-events: none;
+}
+
+/* ── Chart ─────────────────────────────────────────── */
+
+.qb-chart-wrap {
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-6);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.qb-chart {
+    display: block;
+    width: 100%;
+    height: 80px;
+    border-radius: var(--radius-sm);
+    overflow: hidden;
+}
+
+.qb-chart__grid {
+    stroke: var(--color-border);
+    stroke-width: 1;
+    vector-effect: non-scaling-stroke;
+}
+
+.qb-chart__hline {
+    stroke: color-mix(in srgb, var(--tool-accent) 60%, transparent);
+    stroke-width: 1;
+    stroke-dasharray: 4 3;
+    vector-effect: non-scaling-stroke;
+}
+
+.qb-chart__marker {
+    stroke: color-mix(in srgb, var(--tool-accent) 50%, transparent);
+    stroke-width: 1;
+    stroke-dasharray: 3 3;
+    vector-effect: non-scaling-stroke;
+}
+
+.qb-chart__fill {
+    fill: color-mix(in srgb, var(--tool-accent) 18%, transparent);
+}
+
+.qb-chart__stroke {
+    fill: none;
+    stroke: var(--tool-accent);
+    stroke-width: 1.5;
+    vector-effect: non-scaling-stroke;
+}
+
+.qb-chart-axis {
+    position: relative;
+    margin-top: var(--space-1);
+    height: 1.2em;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-muted);
+}
+
+.qb-chart-axis__start {
+    position: absolute;
+    left: 0;
+}
+
+.qb-chart-axis__tick {
+    position: absolute;
+    transform: translateX(-50%);
+}
+
+.qb-chart-axis__tick:last-child {
+    transform: translateX(-100%);
+}
+
+/* ── Converter ─────────────────────────────────────── */
+
+.qb-converter {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+/* ── Field ─────────────────────────────────────────── */
+
+.qb-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+.qb-field__label {
+    font-size: var(--text-xs);
+    font-weight: var(--weight-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--color-muted);
+}
+
+.qb-field__db {
+    margin-left: var(--space-2);
+    font-size: var(--text-xs);
+    font-weight: var(--weight-normal);
+    color: var(--tool-accent);
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+.qb-field__input-wrap {
+    position: relative;
+}
+
+.qb-field__input {
+    background: var(--color-bg-raised);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-3) var(--space-4);
+    color: var(--color-bright);
+    font-family: var(--font-mono);
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-semibold);
+    width: 100%;
+    transition: border-color var(--duration-fast) var(--ease-out);
+    -moz-appearance: textfield;
+}
+
+.qb-field__input::-webkit-inner-spin-button,
+.qb-field__input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+.qb-field__input:focus {
+    outline: none;
+    border-color: var(--tool-accent);
+}
+
+.qb-field__unit {
+    position: absolute;
+    right: var(--space-4);
+    bottom: var(--space-3);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+    pointer-events: none;
+}
+
+/* ── Divider ───────────────────────────────────────── */
+
+.qb-divider {
+    text-align: center;
+    font-size: var(--text-lg);
+    color: var(--color-muted);
+    padding-block: var(--space-1);
+}

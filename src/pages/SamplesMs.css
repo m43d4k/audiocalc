@@ -1,0 +1,115 @@
+/* ── Card ──────────────────────────────────────────── */
+
+.sm-card {
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    max-width: 480px;
+}
+
+/* ── Sample rate row ───────────────────────────────── */
+
+.sm-sr-row {
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+    padding-bottom: var(--space-6);
+    border-bottom: 1px solid var(--color-border);
+}
+
+.sm-sr-label {
+    font-size: var(--text-sm);
+    color: var(--color-subtle);
+    white-space: nowrap;
+}
+
+.sm-sr-select {
+    appearance: none;
+    background: var(--color-bg-raised);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-2) var(--space-8) var(--space-2) var(--space-3);
+    color: var(--color-text);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23555' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--space-3) center;
+    transition: border-color var(--duration-fast);
+}
+
+.sm-sr-select:focus {
+    outline: none;
+    border-color: var(--tool-accent);
+}
+
+/* ── Converter ─────────────────────────────────────── */
+
+.sm-converter {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+}
+
+/* ── Field ─────────────────────────────────────────── */
+
+.sm-field {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    position: relative;
+}
+
+.sm-field__label {
+    font-size: var(--text-xs);
+    font-weight: var(--weight-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--color-muted);
+}
+
+.sm-field__input {
+    background: var(--color-bg-raised);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-3) var(--space-4);
+    color: var(--color-bright);
+    font-family: var(--font-mono);
+    font-size: var(--text-2xl);
+    font-weight: var(--weight-semibold);
+    width: 100%;
+    transition: border-color var(--duration-fast) var(--ease-out);
+    -moz-appearance: textfield;
+}
+
+.sm-field__input::-webkit-inner-spin-button,
+.sm-field__input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+.sm-field__input:focus {
+    outline: none;
+    border-color: var(--tool-accent);
+}
+
+.sm-field__unit {
+    position: absolute;
+    right: var(--space-4);
+    bottom: var(--space-3);
+    font-family: var(--font-mono);
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+    pointer-events: none;
+}
+
+/* ── Divider ───────────────────────────────────────── */
+
+.sm-divider {
+    text-align: center;
+    font-size: var(--text-lg);
+    color: var(--color-muted);
+    padding-block: var(--space-1);
+}

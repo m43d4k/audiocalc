@@ -1,0 +1,12 @@
+.app-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: flex-end;
+    padding: var(--space-4) var(--space-6);
+    /* subtle blur so content beneath remains readable when scrolling */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    background: color-mix(in srgb, var(--color-bg) 70%, transparent);
+}

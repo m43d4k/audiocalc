@@ -1,0 +1,167 @@
+/* ── Input card ────────────────────────────────────── */
+
+.pd-card {
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-6);
+    margin-bottom: var(--space-6);
+}
+
+.pd-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-3) var(--space-6);
+    align-items: center;
+}
+
+/* ── Label ─────────────────────────────────────────── */
+
+.pd-label {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    color: var(--color-subtle);
+}
+
+.pd-unit {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    color: var(--color-muted);
+}
+
+/* ── Input ─────────────────────────────────────────── */
+
+.pd-input {
+    background: var(--color-bg-raised);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-2) var(--space-4);
+    color: var(--color-text);
+    font-family: var(--font-mono);
+    font-size: var(--text-base);
+    width: 100%;
+    transition: border-color var(--duration-fast) var(--ease-out);
+    /* remove number spinner */
+    -moz-appearance: textfield;
+}
+
+.pd-input::-webkit-inner-spin-button,
+.pd-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+.pd-input:focus {
+    outline: none;
+    border-color: var(--tool-accent);
+}
+
+.pd-select {
+    appearance: none;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23555' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right var(--space-3) center;
+    padding-right: var(--space-8);
+}
+
+/* ── Result ────────────────────────────────────────── */
+
+.pd-result {
+    background: var(--color-bg-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--space-8) var(--space-6);
+    text-align: center;
+}
+
+.pd-result__primary {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: var(--space-3);
+    margin-bottom: var(--space-3);
+}
+
+.pd-result__value {
+    font-family: var(--font-mono);
+    font-size: clamp(var(--text-3xl), 6vw, 3rem);
+    font-weight: var(--weight-semibold);
+    color: var(--tool-accent);
+    line-height: 1;
+}
+
+.pd-result__unit {
+    font-family: var(--font-mono);
+    font-size: var(--text-lg);
+    color: var(--color-muted);
+}
+
+.pd-result__state {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-3);
+    margin-top: var(--space-4);
+}
+
+.pd-result__badge {
+    font-size: var(--text-sm);
+    font-weight: var(--weight-medium);
+    padding: 2px var(--space-2);
+    border-radius: var(--radius-sm);
+}
+
+.pd-result__badge--lag {
+    background: color-mix(in srgb, #fb923c 15%, transparent);
+    color: #fb923c;
+}
+
+.pd-result__badge--lead {
+    background: color-mix(in srgb, var(--tool-accent) 15%, transparent);
+    color: var(--tool-accent);
+}
+
+.pd-result__arrow {
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+}
+
+.pd-result__action {
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+}
+
+.pd-result__secondary {
+    font-family: var(--font-mono);
+    font-size: var(--text-lg);
+    color: var(--color-subtle);
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: var(--space-2);
+}
+
+.pd-result__unit-sm {
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+}
+
+.pd-result__invalid {
+    font-size: var(--text-2xl);
+    color: var(--color-muted);
+}
+
+/* ── Mobile ────────────────────────────────────────── */
+
+@media (max-width: 540px) {
+    .pd-form {
+        grid-template-columns: 1fr;
+        gap: var(--space-2);
+    }
+
+    .pd-label {
+        margin-top: var(--space-2);
+    }
+}
