@@ -22,8 +22,8 @@ mise install
 
 ```bash
 npm run dev        # Vite dev server (HMR)
-npm run build      # tsc -b && vite build → docs/
-npm run preview    # preview the docs/ build
+npm run build      # tsc -b && vite build → dist/
+npm run preview    # preview the dist/ build
 npm run typecheck  # tsc --noEmit
 npm test           # vitest (watch mode)
 npm run test:ui    # vitest UI
@@ -48,7 +48,7 @@ Vite + React 19 + TypeScript + plain CSS + Vitest. No CSS modules, no CSS-in-JS 
 
 ### Build Output
 
-`docs/` — GitHub Pages 用の出力先。`vite build` で生成される。
+`dist/` — Vite デフォルトの出力先。`vite build` で生成される。
 
 ### Source Structure
 
