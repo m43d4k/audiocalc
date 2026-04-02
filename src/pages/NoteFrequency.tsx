@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import { ToolLayout } from "../components/ToolLayout";
 import { useLang } from "../i18n";
 import {
@@ -7,7 +7,7 @@ import {
   REF_MAX,
   REF_DEFAULT,
 } from "../lib/noteFrequency";
-import { playFrequency } from "../lib/audioPlayer";
+import { playFrequency, type AudioPlayer } from "../lib/audioPlayer";
 import "./NoteFrequency.css";
 
 const PITCH_CLASSES = [
@@ -21,21 +21,28 @@ export function NoteFrequency() {
   const [showOct, setShowOct] = useState(false);
   const [ref, setRef] = useState(REF_DEFAULT);
   const [playingMidi, setPlayingMidi] = useState<number | null>(null);
-  const stopRef = useRef<(() => void) | null>(null);
+  const playerRef = useRef<AudioPlayer | null>(null);
+
+  const tones = useMemo(() => generateTones(ref), [ref]);
+
+  // ref スライダーが動いたとき、再生中の音の周波数をリアルタイムで更新する
+  useEffect(() => {
+    if (playingMidi === null || playerRef.current === null) return;
+    const row = tones.find((r) => r.midi === playingMidi);
+    if (row) playerRef.current.setFrequency(row.freq);
+  }, [tones, playingMidi]);
 
   function handlePlay(midi: number, hz: number) {
     if (playingMidi === midi) {
-      stopRef.current?.();
-      stopRef.current = null;
+      playerRef.current?.stop();
+      playerRef.current = null;
       setPlayingMidi(null);
       return;
     }
-    stopRef.current?.();
-    stopRef.current = playFrequency(hz);
+    playerRef.current?.stop();
+    playerRef.current = playFrequency(hz);
     setPlayingMidi(midi);
   }
-
-  const tones = useMemo(() => generateTones(ref), [ref]);
 
   const filtered =
     filter === "All"

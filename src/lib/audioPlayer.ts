@@ -7,8 +7,13 @@ function getCtx(): AudioContext {
   return _ctx;
 }
 
-/** サイン波を再生し、停止関数を返す。停止関数を呼ぶまで鳴り続ける。 */
-export function playFrequency(hz: number): () => void {
+export interface AudioPlayer {
+  stop: () => void;
+  setFrequency: (hz: number) => void;
+}
+
+/** サイン波を再生し、stop / setFrequency を持つオブジェクトを返す。 */
+export function playFrequency(hz: number): AudioPlayer {
   const ctx = getCtx();
   if (ctx.state === "suspended") ctx.resume();
 
@@ -28,13 +33,19 @@ export function playFrequency(hz: number): () => void {
 
   let stopped = false;
 
-  return function stop() {
-    if (stopped) return;
-    stopped = true;
-    const t = ctx.currentTime;
-    gain.gain.cancelScheduledValues(t);
-    gain.gain.setValueAtTime(gain.gain.value, t);
-    gain.gain.linearRampToValueAtTime(0, t + 0.02);
-    osc.stop(t + 0.02);
+  return {
+    stop() {
+      if (stopped) return;
+      stopped = true;
+      const t = ctx.currentTime;
+      gain.gain.cancelScheduledValues(t);
+      gain.gain.setValueAtTime(gain.gain.value, t);
+      gain.gain.linearRampToValueAtTime(0, t + 0.02);
+      osc.stop(t + 0.02);
+    },
+    setFrequency(newHz: number) {
+      if (stopped) return;
+      osc.frequency.setTargetAtTime(newHz, ctx.currentTime, 0.02);
+    },
   };
 }
