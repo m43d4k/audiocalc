@@ -1,4 +1,4 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef } from "react";
 import { ToolLayout } from "../components/ToolLayout";
 import { useLang } from "../i18n";
 import {
@@ -7,6 +7,7 @@ import {
   REF_MAX,
   REF_DEFAULT,
 } from "../lib/noteFrequency";
+import { playFrequency } from "../lib/audioPlayer";
 import "./NoteFrequency.css";
 
 const PITCH_CLASSES = [
@@ -19,6 +20,20 @@ export function NoteFrequency() {
   const [filter, setFilter] = useState<PitchClass>("All");
   const [showOct, setShowOct] = useState(false);
   const [ref, setRef] = useState(REF_DEFAULT);
+  const [playingMidi, setPlayingMidi] = useState<number | null>(null);
+  const stopRef = useRef<(() => void) | null>(null);
+
+  function handlePlay(midi: number, hz: number) {
+    if (playingMidi === midi) {
+      stopRef.current?.();
+      stopRef.current = null;
+      setPlayingMidi(null);
+      return;
+    }
+    stopRef.current?.();
+    stopRef.current = playFrequency(hz);
+    setPlayingMidi(midi);
+  }
 
   const tones = useMemo(() => generateTones(ref), [ref]);
 
@@ -86,7 +101,7 @@ export function NoteFrequency() {
       </div>
 
       <div className="nf-table-wrap">
-        <table className="nf-table">
+        <table className={`nf-table${playingMidi !== null ? " nf-table--has-playing" : ""}`}>
           <thead>
             <tr>
               <th>{t.ui.colNote}</th>
@@ -94,29 +109,46 @@ export function NoteFrequency() {
               <th>{t.ui.colHz}</th>
               {showOct && <th>{t.ui.colOctLow}</th>}
               {showOct && <th>{t.ui.colOctHigh}</th>}
+              <th className="nf-table__play-col" />
             </tr>
           </thead>
           <tbody>
-            {filtered.map((row) => (
-              <tr
-                key={row.midi}
-                className={row.note.startsWith("C") && !row.note.startsWith("C#") ? "nf-table__row--c" : ""}
-              >
-                <td className="nf-table__note">{row.note}</td>
-                <td className="nf-table__num">{row.midi}</td>
-                <td className="nf-table__num">{row.freq.toFixed(3)}</td>
-                {showOct && (
-                  <td className="nf-table__num nf-table__num--dim">
-                    {row.low.toFixed(3)}
+            {filtered.map((row) => {
+              const isPlaying = playingMidi === row.midi;
+              return (
+                <tr
+                  key={row.midi}
+                  className={[
+                    row.note.startsWith("C") && !row.note.startsWith("C#") ? "nf-table__row--c" : "",
+                    isPlaying ? "nf-table__row--playing" : "",
+                  ].filter(Boolean).join(" ")}
+                >
+                  <td className="nf-table__note">{row.note}</td>
+                  <td className="nf-table__num">{row.midi}</td>
+                  <td className="nf-table__num">{row.freq.toFixed(3)}</td>
+                  {showOct && (
+                    <td className="nf-table__num nf-table__num--dim">
+                      {row.low.toFixed(3)}
+                    </td>
+                  )}
+                  {showOct && (
+                    <td className="nf-table__num nf-table__num--dim">
+                      {row.high.toFixed(3)}
+                    </td>
+                  )}
+                  <td className="nf-table__play-cell">
+                    <button
+                      className={`nf-play-btn${isPlaying ? " nf-play-btn--playing" : ""}`}
+                      onClick={() => handlePlay(row.midi, row.freq)}
+                      aria-label={`${t.ui.nfPlay} ${row.note}`}
+                      aria-pressed={isPlaying}
+                    >
+                      {isPlaying ? "◼" : "▶"}
+                    </button>
                   </td>
-                )}
-                {showOct && (
-                  <td className="nf-table__num nf-table__num--dim">
-                    {row.high.toFixed(3)}
-                  </td>
-                )}
-              </tr>
-            ))}
+                </tr>
+              );
+            })}
           </tbody>
         </table>
       </div>

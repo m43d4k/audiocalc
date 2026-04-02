@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-**AudioCalc** — Audio calculators for music production, mixing, and mastering. A static web project (no build step, no framework).
+**AudioCalc** — Audio calculators for music production, mixing, and mastering. Vite + React 19 + TypeScript.
 
 The `_legacy/` directory holds the previous iteration of these tools (gitignored). New tools are built directly in the project root.
 
@@ -58,7 +58,10 @@ src/
     tokens.css       # CSS custom properties (design tokens) — import this first
     global.css       # reset + base styles (imports tokens.css)
   components/        # shared UI components
-  tools/             # individual calculator tools
+  pages/             # page-level tool components
+  lib/               # pure calculation logic + shared utilities (e.g. audioPlayer.ts)
+  i18n/              # translations (en / ja)
+  data/              # static data (tools.ts)
   test/
     setup.ts         # @testing-library/jest-dom setup
   vite-env.d.ts
@@ -87,7 +90,7 @@ All values (colors, spacing, typography, radius, etc.) live as CSS custom proper
 ### Conventions
 
 - **MIDI convention**: C3 = MIDI 60 (not C4)
-- Calculator logic is pure functions (no side effects); React components only handle display
+- Calculator logic is pure functions (no side effects); React components only handle display. Exception: `src/lib/audioPlayer.ts` holds a singleton `AudioContext` for Web Audio API playback.
 - Test files: `*.test.ts` / `*.test.tsx` alongside the source file
 
 ## Code Style

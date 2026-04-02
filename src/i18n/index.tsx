@@ -25,6 +25,7 @@ interface UiT {
   colHz: string;
   colOctLow: string;
   colOctHigh: string;
+  nfPlay: string;
   // transpose
   transposeFrom: string;
   transposeTo: string;
@@ -145,6 +146,7 @@ const en: Translations = {
     colHz: "Hz",
     colOctLow: "−½ Oct",
     colOctHigh: "+½ Oct",
+    nfPlay: "Play",
     transposeFrom: "From",
     transposeTo: "To",
     transposeUp: "Up",
@@ -250,6 +252,7 @@ const ja: Translations = {
     colHz: "Hz",
     colOctLow: "−½ Oct",
     colOctHigh: "+½ Oct",
+    nfPlay: "再生",
     transposeFrom: "元の音",
     transposeTo: "移調先",
     transposeUp: "上行",

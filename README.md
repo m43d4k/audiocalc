@@ -11,7 +11,7 @@ A static web app that runs entirely in the browser — no login required, no tra
 
 | Tool | Description |
 |------|-------------|
-| **Note ↔ Frequency** | Displays a table of note names, MIDI note numbers, and frequencies in Hz. Supports reference tuning adjustment (A = 432–444 Hz), pitch-class filtering, and optional ±½-octave columns |
+| **Note ↔ Frequency** | Displays a table of note names, MIDI note numbers, and frequencies in Hz. Supports reference tuning adjustment (A = 432–444 Hz), pitch-class filtering, optional ±½-octave columns, and sine wave playback for each note |
 | **Transpose** | Select two notes to instantly see the interval in semitones and its name (ascending/descending) |
 | **Phase → Delay** | Enter a phase difference in degrees to convert it to the corresponding delay in milliseconds and samples, with lag/lead indication |
 | **Delay & Reverb** | Enter a BPM to calculate pre-delay, decay, and total reverb times for hall, room, and tight reverb settings |

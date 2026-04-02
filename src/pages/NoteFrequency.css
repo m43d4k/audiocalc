@@ -244,7 +244,20 @@
 
 .nf-table tbody tr {
     border-bottom: 1px solid color-mix(in srgb, var(--color-border) 50%, transparent);
-    transition: background-color var(--duration-fast);
+    transition: background-color var(--duration-fast), opacity var(--duration-fast);
+}
+
+/* 再生中の行を強調、他を暗く */
+.nf-table--has-playing tbody tr:not(.nf-table__row--playing) {
+    opacity: 0.35;
+}
+
+.nf-table--has-playing tbody tr:not(.nf-table__row--playing):hover {
+    opacity: 1;
+}
+
+.nf-table__row--playing {
+    background: color-mix(in srgb, var(--tool-accent) 8%, transparent);
 }
 
 .nf-table tbody tr:last-child {
@@ -280,4 +293,44 @@
 
 .nf-table__num--dim {
     color: var(--color-subtle);
+}
+
+/* ── Play button ───────────────────────────────────── */
+
+.nf-table__play-col {
+    width: 44px;
+}
+
+.nf-table__play-cell {
+    padding: var(--space-1) var(--space-2);
+    text-align: center;
+}
+
+.nf-play-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 28px;
+    border-radius: var(--radius-sm);
+    font-size: 12px;
+    color: color-mix(in srgb, var(--color-muted) 40%, transparent);
+    background: transparent;
+    border: 1px solid transparent;
+    transition:
+        color var(--duration-fast) var(--ease-out),
+        background-color var(--duration-fast) var(--ease-out),
+        border-color var(--duration-fast) var(--ease-out);
+}
+
+/* 行ホバー時に再生ボタンを明るくする */
+.nf-table tbody tr:hover .nf-play-btn:not(.nf-play-btn--playing) {
+    color: var(--color-subtle);
+    border-color: var(--color-border);
+}
+
+.nf-play-btn--playing {
+    color: var(--tool-accent);
+    background: color-mix(in srgb, var(--tool-accent) 15%, transparent);
+    border-color: color-mix(in srgb, var(--tool-accent) 40%, transparent);
 }
